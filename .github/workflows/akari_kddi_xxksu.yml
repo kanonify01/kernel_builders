@@ -63,6 +63,11 @@ jobs:
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         #sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32712/g' KernelSU/kernel/Makefile
+
+    - name: Set up Nomount
+      run: |
+        cd $KERNEL_DIR
+        curl https://raw.githubusercontent.com/maxsteeel/nomount/refs/heads/dev/kernel/setup.sh | bash -s master
     
     - name: Generate defconfig
       run: |
