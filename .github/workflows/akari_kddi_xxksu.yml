@@ -11,8 +11,8 @@ jobs:
       CODENAME: akari_kddi
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: Stargate-v1.3
-      KERNEL_BRANCH: strgt
+      KERNEL_VER: Stargate-v1.3Rc4
+      KERNEL_BRANCH: stargate
       KERNEL_URL: https://github.com/aoi-iitsme/stargate_kernel_sony_tama
       ANYKERNEL_URL: https://github.com/kanonify01/AnyKernel3
       CLANG_URL: https://gitlab.com/kei-space/clang/r547379.git
@@ -80,7 +80,7 @@ jobs:
         echo "CONFIG_KSU_NOPRINTK=y" >> "${DEFCONFIG_PATH}"
         #echo "CONFIG_KSU_SUSFS=y" >> "${DEFCONFIG_PATH}"
         sed -i "s/CONFIG_LOCALVERSION=\"-perf\"/CONFIG_LOCALVERSION=\"-$KERNEL_VER\"/" "$DEFCONFIG_PATH"
-        sed -i "s/^CONFIG_AUDIT=.*/CONFIG_AUDIT=n/" "$DEFCONFIG_PATH"
+        #sed -i "s/^CONFIG_AUDIT=.*/CONFIG_AUDIT=n/" "$DEFCONFIG_PATH"
         make O=out ARCH=arm64 "$CONFIG_NAME"
         mv out/.config "$DEFCONFIG_PATH"
 
