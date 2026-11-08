@@ -11,8 +11,8 @@ jobs:
       CODENAME: akari_kddi
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: Stargate-v1.3Rc4
-      KERNEL_BRANCH: stargate
+      KERNEL_VER: Stargate-v1.3Rc5
+      KERNEL_BRANCH: strgt
       KERNEL_URL: https://github.com/aoi-iitsme/stargate_kernel_sony_tama
       ANYKERNEL_URL: https://github.com/kanonify01/AnyKernel3
       CLANG_URL: https://gitlab.com/kei-space/clang/r547379.git
