@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-24.04
 
     env:
-      CODENAME: akari_kddi
+      CODENAME: akari_jp
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
       KERNEL_VER: Stargate-v1.3Rc5
-      KERNEL_BRANCH: strgt
-      KERNEL_URL: https://github.com/aoi-iitsme/stargate_kernel_sony_tama
+      KERNEL_BRANCH: lineage-23.2-4.19
+      KERNEL_URL: https://github.com/aoitsme/android_kernel_sony_sdm845-4.19
       ANYKERNEL_URL: https://github.com/kanonify01/AnyKernel3
       CLANG_URL: https://gitlab.com/kei-space/clang/r547379.git
       CLANG_BRANCH: master
@@ -123,7 +123,7 @@ jobs:
         OUT_DIR=$KERNEL_DIR/out
         KERNEL_IMAGE_DIR=$OUT_DIR/arch/arm64/boot
         KERNEL_IMAGE=$KERNEL_IMAGE_DIR/Image.gz-dtb
-        CONFIG_NAME="tama_${CODENAME}_defconfig"
+        CONFIG_NAME="aosp_tama_${CODENAME}_defconfig"
         KERNEL_COMMIT_ID=$(git rev-parse --short=7 HEAD)
         ZIP_NAME="${KERNEL_VER}_${CODENAME}-XXKSU-$(date +%Y%m%d)-${KERNEL_COMMIT_ID}.zip"
         echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
