@@ -5,15 +5,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     env:
-      CODENAME: akari
+      CODENAME: akari_kddi
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: Test
-      KERNEL_BRANCH: lineage-24
-      KERNEL_URL: https://github.com/romiyusnandar/kernel-sony-akari-4.19
+      KERNEL_VER: Stargate-v1.3Rc6
+      KERNEL_BRANCH: stargate
+      KERNEL_URL: https://github.com/aoi-iitsme/stargate_kernel_sony_tama
       ANYKERNEL_URL: https://github.com/kanonify01/AnyKernel3
       CLANG_URL: https://gitlab.com/kei-space/clang/r547379.git
       CLANG_BRANCH: master
@@ -67,7 +67,7 @@ jobs:
     - name: Generate defconfig
       run: |
         cd $KERNEL_DIR
-        CONFIG_NAME="aosp_tama_${CODENAME}_defconfig"
+        CONFIG_NAME="tama_${CODENAME}_defconfig"
         DEFCONFIG_PATH="arch/arm64/configs/$CONFIG_NAME"
         #echo "CONFIG_KPROBES=y" >> "${DEFCONFIG_PATH}"
         #echo "CONFIG_KRETPROBES=y" >> "${DEFCONFIG_PATH}"
@@ -79,7 +79,7 @@ jobs:
         echo "CONFIG_KSU_HOSTSREDIRECT=y" >> "${DEFCONFIG_PATH}"
         echo "CONFIG_KSU_NOPRINTK=y" >> "${DEFCONFIG_PATH}"
         #echo "CONFIG_KSU_SUSFS=y" >> "${DEFCONFIG_PATH}"
-        #sed -i "s/CONFIG_LOCALVERSION=\"-perf\"/CONFIG_LOCALVERSION=\"-$KERNEL_VER\"/" "$DEFCONFIG_PATH"
+        sed -i "s/CONFIG_LOCALVERSION=\"-perf\"/CONFIG_LOCALVERSION=\"-$KERNEL_VER\"/" "$DEFCONFIG_PATH"
         #sed -i "s/^CONFIG_AUDIT=.*/CONFIG_AUDIT=n/" "$DEFCONFIG_PATH"
         make O=out ARCH=arm64 "$CONFIG_NAME"
         mv out/.config "$DEFCONFIG_PATH"
@@ -123,7 +123,7 @@ jobs:
         OUT_DIR=$KERNEL_DIR/out
         KERNEL_IMAGE_DIR=$OUT_DIR/arch/arm64/boot
         KERNEL_IMAGE=$KERNEL_IMAGE_DIR/Image.gz-dtb
-        CONFIG_NAME="aosp_tama_${CODENAME}_defconfig"
+        CONFIG_NAME="tama_${CODENAME}_defconfig"
         KERNEL_COMMIT_ID=$(git rev-parse --short=7 HEAD)
         ZIP_NAME="${KERNEL_VER}_${CODENAME}-XXKSU-$(date +%Y%m%d)-${KERNEL_COMMIT_ID}.zip"
         echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
