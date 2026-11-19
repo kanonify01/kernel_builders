@@ -11,9 +11,9 @@ jobs:
       CODENAME: akari_jp
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: Stargate-v1.3Rc5
-      KERNEL_BRANCH: lineage-23.2-4.19
-      KERNEL_URL: https://github.com/aoitsme/android_kernel_sony_sdm845-4.19
+      KERNEL_VER: Test
+      KERNEL_BRANCH: lineage-24
+      KERNEL_URL: https://github.com/romiyusnandar/kernel-sony-akari-4.19
       ANYKERNEL_URL: https://github.com/kanonify01/AnyKernel3
       CLANG_URL: https://gitlab.com/kei-space/clang/r547379.git
       CLANG_BRANCH: master
